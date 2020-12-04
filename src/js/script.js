@@ -116,7 +116,7 @@
         //console.log(thisProduct.element);
 
         /* if there is active product and it's not thisProduct.element, remove class active from it */
-        if(activeProduct != null && activeProduct != thisProduct.element){
+        if(activeProduct !== null && activeProduct !== thisProduct.element){
           activeProduct.classList.remove(classNames.menuProduct.wrapperActive);
 
         }
@@ -170,17 +170,17 @@
 
           // [8.6] check if there is param with a name of paramId in formData and if it includes optionId
           // formData[paramId] = firstCheck == true
-          const optionSelected = formData.hasOwnProperty(paramId) == true && formData[paramId].includes(optionId);
+          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId);
           if(optionSelected){
 
             // [8.6] check if the option is not default
-            if(!option.default == true){
+            if(!option.default){
               // [8.6] add option price to price variable
               price += option.price;
             }
 
             // [8.6] check if the option is default
-          } else if(option.default == true){
+          } else if(option.default){
             // [8.6] reduce price variable
             price -= option.price;
           }
@@ -188,7 +188,7 @@
           const image = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
 
           // [8.7] check if it was found
-          if(image != null){
+          if(image !== null){
 
             // [8.7] check if current option is 'checked'
             if(optionSelected){
@@ -236,7 +236,12 @@
       const newValue = parseInt(value);
 
       // check if the newValue is different from the one already written
-      if(thisWidget.value !== newValue && isNaN(newValue) == false && newValue <= 10 && newValue >= 0){
+      if(
+        thisWidget.value !== newValue &&
+        !isNaN(newValue) &&
+        newValue <= 10 &&
+        newValue >= 0
+      ){
         thisWidget.value = newValue;
       }
       thisWidget.input.value = thisWidget.value;
