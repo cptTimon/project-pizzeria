@@ -97,8 +97,7 @@
       thisProduct.initOrderForm();
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
-      thisProduct.prepareCartProductParams();
-     // console.log('new Product:', thisProduct);
+      // console.log('new Product:', thisProduct);
     }
 
     initAmountWidget(){
@@ -195,14 +194,14 @@
 
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'...}
         const param = thisProduct.data.params[paramId];
-         //console.log(paramId, param);
+        //console.log(paramId, param);
 
         // for every option in this category
         for(let optionId in param.options) {
 
           // determine option value, e.g. optionId = 'olives', option = { labeL: 'Olives', price: 2, default: true}
           const option = param.options[optionId];
-          // console.log(optionId, option);
+          //console.log(optionId, option);
 
           // [8.6] check if there is param with a name of paramId in formData and if it includes optionId
           // formData[paramId] = firstCheck == true
@@ -265,43 +264,34 @@
         name: thisProduct.data.name,
         amount: thisProduct.amountWidget.value,
         priceSingle: thisProduct.priceSingle,
-        price: thisProduct.priceMulti
+        price: thisProduct.priceMulti,
+        params: thisProduct.prepareCartProductParams()
       };
-      const params = {};
 
       return productSummary;
     }
 
     prepareCartProductParams(){
       const thisProduct = this;
-      // convert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.form);
       const params = {};
+
       // for every category (param)...
       for(let paramId in thisProduct.data.params){
-
-        // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'...}
         const param = thisProduct.data.params[paramId];
-        // console.log(paramId, param);
 
+        // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
+        params[paramId] = {
+          label: param.label,
+          options: {}
+        }
         // for every option in this category
         for(let optionId in param.options) {
-
-          // determine option value, e.g. optionId = 'olives', option = { labeL: 'Olives', price: 2, default: true}
           const option = param.options[optionId];
-          // console.log(optionId, option);
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
 
-          //check if there is param with a name of paramId in formData and if it includes optionId
-          const optionSelected = formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId);
           if(optionSelected){
-            const paramIdObject = {
-              label: paramId,
-              options: {
-                optionId: option.label
-              }
-            }
-            params.paramId = paramIdObject;
-
+            params[paramId].options[optionId] = option.label;
           }
         }
       }
@@ -389,6 +379,7 @@
 
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
     }
 
     initActions(){
@@ -400,11 +391,14 @@
 
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
 
-      })
+      });
     }
 
     add(menuProduct){
-      //const thisCart = this;
+      const thisCart = this;
+      const generatedHTML = templates.cartProduct(menuProduct);
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+      thisCart.dom.productList.appendChild(generatedDOM);
 
 
       console.log('adding product', menuProduct);
