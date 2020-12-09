@@ -423,7 +423,7 @@
 
     update(){
       const thisCart = this;
-      const deliveryFee = settings.cart.defaultDeliveryFee;
+      let deliveryFee = settings.cart.defaultDeliveryFee;
 
       let totalNumber = 0;
       let subtotalPrice = 0;
@@ -438,17 +438,18 @@
       }
       else {
         thisCart.totalPrice = 0;
+        deliveryFee = 0;
       }
       console.log('totalNumber', totalNumber);
       console.log('subtotalPrice', subtotalPrice);
       console.log('thisCart.totalPrice', thisCart.totalPrice);
       console.log(thisCart.dom.totalPrice);
-      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
       thisCart.dom.subTotalPrice.innerHTML = subtotalPrice;
       for(let price of thisCart.dom.totalPrice){
         price.innerHTML = thisCart.totalPrice;
       }
       thisCart.dom.totalNumber.innerHTML = totalNumber;
+      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
     }
 
     remove(cartProduct){
