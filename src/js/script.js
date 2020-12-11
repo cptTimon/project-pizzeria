@@ -270,7 +270,7 @@
         price: thisProduct.priceMulti,
         params: thisProduct.prepareCartProductParams()
       };
-      console.log(productSummary);
+      console.log('productSummary',productSummary);
       return productSummary;
     }
 
