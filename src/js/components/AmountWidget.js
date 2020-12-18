@@ -16,6 +16,8 @@ class AmountWidget {
     const thisWidget = this;
 
     thisWidget.element = element;
+    console.log(document.querySelector(select.widgets.amount.input));
+    console.log(select.widgets.amount.linkDecrease);
     thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
     thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
     thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
