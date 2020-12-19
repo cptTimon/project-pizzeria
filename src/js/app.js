@@ -10,9 +10,9 @@ const app = {
     thisApp.bookingWrapper = document.querySelector(select.containerOf.booking);
     new Booking(thisApp.bookingWrapper);
   },
+
   initPages: function(){
     const thisApp = this;
-
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
     const idFromHash = window.location.hash.replace('#/','');
@@ -24,7 +24,6 @@ const app = {
       }
     }
     thisApp.activatePage(pageMatchingHash);
-
     for(let link of thisApp.navLinks){
       link.addEventListener('click', function(event){
         const clickedElement = this;
@@ -41,14 +40,11 @@ const app = {
 
   activatePage: function(pageId){
     const thisApp = this;
-
-    /* add class 'actove' to matching pages, remove form non-matching*/
-
+    /* add class 'active' to matching pages, remove form non-matching*/
     for(let page of thisApp.pages){
       page.classList.toggle(classNames.pages.active,page.id == pageId);
     }
-    /* add class 'actove' to matching links, remove form non-matching*/
-
+    /* add class 'active' to matching links, remove form non-matching*/
     for(let link of thisApp.navLinks){
       link.classList.toggle(
         classNames.nav.active,
@@ -106,4 +102,3 @@ const app = {
 };
 
 app.init();
-

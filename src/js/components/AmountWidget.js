@@ -6,19 +6,14 @@ class AmountWidget {
     thisWidget.getElements(element);
     thisWidget.setValue(thisWidget.input.value);
     thisWidget.initActions();
-    console.log('AmountWidget', AmountWidget);
-    //console.log('constructor arguments', element);
-    //console.log(thisWidget.input);
-    //console.log(thisWidget.value);
   }
 
   getElements(element){
     const thisWidget = this;
-
     thisWidget.element = element;
-    thisWidget.input = document.querySelector(select.widgets.amount.input);
-    thisWidget.linkDecrease = document.querySelector(select.widgets.amount.linkDecrease);
-    thisWidget.linkIncrease = document.querySelector(select.widgets.amount.linkIncrease);
+    thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
+    thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
+    thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
   }
   setValue(value){
     const thisWidget = this;
