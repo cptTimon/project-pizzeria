@@ -1,4 +1,4 @@
-import {templates, select, settings, classNames,} from './../settings.js';
+import {templates, select, settings, classNames} from './../settings.js';
 import utils from '../utils.js';
 import AmountWidget from './AmountWidget.js';
 import DatePicker from './DatePicker.js';
@@ -112,7 +112,7 @@ class Booking{
 
   updateDOM(){
     const thisBooking = this;
-
+    console.log('update DOM');
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
 
@@ -133,7 +133,7 @@ class Booking{
       if(
         !allAvailable
         &&
-        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) >= -1
+        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
       ){
         table.classList.add(classNames.booking.tableBooked);
       } else {
