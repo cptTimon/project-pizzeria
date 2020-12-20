@@ -9,8 +9,6 @@ const app = {
     const thisApp = this;
     thisApp.bookingWrapper = document.querySelector(select.containerOf.booking);
     new Booking(thisApp.bookingWrapper);
-    console.log(document.querySelector(select.widgets.hourPicker.input));
-    console.log(document.querySelector(select.widgets.hourPicker.output));
   },
 
   initPages: function(){
