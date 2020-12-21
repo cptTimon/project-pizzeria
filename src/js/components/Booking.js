@@ -262,8 +262,9 @@ class Booking{
       body: JSON.stringify(payload),
     };
     fetch(url, options)
-      .then(thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table));
-      console.log(thisBooking.booked);
+      .then(thisBooking.makeBooked(payload.date, payload.hour, payload.duration, parseInt(payload.table)))
+      .then(console.log(thisBooking.booked));
+    location.reload();
   }
 }
 
