@@ -5,7 +5,6 @@ import DatePicker from './DatePicker.js';
 import HourPicker from './HourPicker.js';
 
 class Booking{
-
   constructor(element){
     const thisBooking = this;
     thisBooking.chosenTableNumber = null;
@@ -13,6 +12,7 @@ class Booking{
     thisBooking.initWidgets();
     thisBooking.getData();
   }
+
   getData(){
     const thisBooking = this;
 
@@ -34,7 +34,6 @@ class Booking{
         endDateParam,
       ],
     };
-    //console.log('getData params', params);
     const urls = {
       booking:       settings.db.url + '/' + settings.db.booking
                                      + '?' + params.booking.join('&'),
@@ -43,7 +42,6 @@ class Booking{
       eventsRepeat:  settings.db.url + '/' + settings.db.event
                                      + '?' + params.eventsRepeat.join('&'),
     };
-    //console.log('getData urls', urls);
     Promise.all([
       fetch(urls.booking),
       fetch(urls.eventsCurrent),
@@ -194,7 +192,6 @@ class Booking{
         if(clickedElement.checked){
           thisBooking.starters.push(clickedElement.value);
         }
-        console.log(thisBooking.starters);
       }
     });
   }
@@ -211,7 +208,6 @@ class Booking{
 
   bookTable(event){
     const thisBooking = this;
-
     const clickedElement = event.target;
     if(clickedElement.classList.contains(classNames.booking.table)){
       const tableNumber = clickedElement.getAttribute('data-table');
@@ -234,6 +230,7 @@ class Booking{
       }
     }
   }
+
   sendBooking(){
     const thisBooking = this;
     console.log('sendBooking function');
@@ -252,10 +249,7 @@ class Booking{
 
     for(let starter of thisBooking.starters) {
       console.log(starter);
-      payload.starters.push(starter);
     }
-    console.log(payload);
-    console.log(typeof (payload.table));
 
     const options = {
       method: 'POST',
