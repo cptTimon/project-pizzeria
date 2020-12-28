@@ -5,9 +5,7 @@ import CartProduct from './CartProduct.js';
 class Cart{
   constructor(element){
     const thisCart = this;
-
     thisCart.products = [];
-
     thisCart.getElements(element);
     thisCart.initActions();
   }
@@ -17,28 +15,26 @@ class Cart{
 
     thisCart.dom = {};
 
-    thisCart.dom.wrapper = element;
+    thisCart.dom.wrapper       = element;
     thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
-    thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
-    thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee);
+    thisCart.dom.productList   = thisCart.dom.wrapper.querySelector(select.cart.productList);
+    thisCart.dom.deliveryFee   = thisCart.dom.wrapper.querySelector(select.cart.deliveryFee);
     thisCart.dom.subTotalPrice = thisCart.dom.wrapper.querySelector(select.cart.subtotalPrice);
-    thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
-    thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
-    thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
-    thisCart.dom.formAdress = thisCart.dom.wrapper.querySelector(select.cart.address);
-    thisCart.dom.formPhone = thisCart.dom.wrapper.querySelector(select.cart.phone);
+    thisCart.dom.totalPrice    = thisCart.dom.wrapper.querySelectorAll(select.cart.totalPrice);
+    thisCart.dom.totalNumber   = thisCart.dom.wrapper.querySelector(select.cart.totalNumber);
+    thisCart.dom.form          = thisCart.dom.wrapper.querySelector(select.cart.form);
+    thisCart.dom.formAdress    = thisCart.dom.wrapper.querySelector(select.cart.address);
+    thisCart.dom.formPhone     = thisCart.dom.wrapper.querySelector(select.cart.phone);
   }
 
   initActions(){
     const thisCart = this;
 
     thisCart.dom.toggleTrigger.addEventListener('click', function(event){
-
       event.preventDefault();
-
       thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
-
     });
+
     thisCart.dom.productList.addEventListener('updated', function(){
       thisCart.update();
     });
@@ -74,17 +70,21 @@ class Cart{
       thisCart.totalNumber += product.amount;
       thisCart.subtotalPrice += product.price;
     }
+
     if(thisCart.totalNumber > 0){
       thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
     }
+
     else {
       thisCart.totalPrice = 0;
       thisCart.deliveryFee = 0;
     }
+
     thisCart.dom.subTotalPrice.innerHTML = thisCart.subtotalPrice;
     for(let price of thisCart.dom.totalPrice){
       price.innerHTML = thisCart.totalPrice;
     }
+
     thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
     thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
   }
