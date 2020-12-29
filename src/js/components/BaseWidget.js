@@ -27,10 +27,12 @@ class BaseWidget{
     }
     thisWidget.renderValue();
   }
+
   setValue(value){
     const thisWidget = this;
     thisWidget.value = value;
   }
+
   parseValue(value){
     return parseInt(value);
   }
@@ -38,10 +40,12 @@ class BaseWidget{
   isValid(value){
     return !isNaN(value);
   }
+
   renderValue(){
     const thisWidget = this;
     thisWidget.dom.wrapper.innerHTML = thisWidget.value;
   }
+
   announce(){
     const thisWidget = this;
 

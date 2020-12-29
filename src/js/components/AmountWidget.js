@@ -6,12 +6,11 @@ class AmountWidget extends BaseWidget {
     const thisWidget = this;
     thisWidget.getElements(element);
     thisWidget.initActions();
-    //console.log('AmountWidget', thisWidget);
   }
 
   getElements(){
     const thisWidget = this;
-    thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
+    thisWidget.dom.input        = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
     thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
   }
