@@ -33,6 +33,9 @@ export const select = {
       linkDecrease: 'a[href="#less"]',
       linkIncrease: 'a[href="#more"]',
     },
+    carousel: {
+      wrapper: '.carousel-main',
+    },
     datePicker: {
       wrapper: '.date-picker',
       input: `input[name="date"]`,
