@@ -78,9 +78,15 @@
       flex: 50%;
     }
 
-    .carousel-picture{
+    .carousel-picture {
       width: 50%;
       margin-right: 10px;
+    }
+  }
+
+  .gallery {
+    .gallery-row {
+      dipsplay: flex;
     }
   }
 }
